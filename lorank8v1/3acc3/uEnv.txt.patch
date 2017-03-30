@@ -1,0 +1,4 @@
+39a40,42
+> ##Enable SPIDEV0
+> cape_enable=bone_capemgr.enable_partno=BB-SPIDEV0
+> 
