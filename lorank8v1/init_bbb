@@ -49,7 +49,7 @@ BBBNAME=$(hostname)
 NEWNAME="lorank8"
 hostname $NEWNAME
 echo $NEWNAME > /etc/hostname
-sed -i "s/$BBBNAME/$NEWNAME/" /etc/hosts
+sed -i "s/$BBBNAME/$NEWNAME/g" /etc/hosts
 
 # Generate a key-pair so you can enable remote maintenance
 if [ ! -e /root/.ssh/id_rsa ]
