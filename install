@@ -3,6 +3,9 @@
 # start me like: install lorank8v1 1.0.1
 # from the directory you cloned the repro Lorank in.
 
+# check running as root
+[[ $(id -u) != 0 ]] && { echo "The installer requires root privileges"; exit 1; }
+
 # Control of urs leds
 function led_on    { pushd /sys/class/leds/beaglebone\:green\:usr$1; echo none  > trigger; echo 1 > brightness; popd; }
 function led_off   { pushd /sys/class/leds/beaglebone\:green\:usr$1; echo none  > trigger; echo 0 > brightness; popd; }
