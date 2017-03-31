@@ -6,6 +6,7 @@
 TARGETDIR=lorank8v1
 DOGTAG=$(md5sum /etc/dogtag)
 DTSHORT=${DOGTAG:0:5}
+LORANK_WEB_ROOT="/usr/share/bone101"
 
 # Stop on the first sign of trouble
 set -e
@@ -27,10 +28,10 @@ fi
 mkdir -p /root/savesys
 
 # Load a basic webpage
-mkdir -p /var/lib/cloud9/images
-cp -n /var/lib/cloud9/index.html /root/savesys/cloud9_index.html
-cp Lorank/$TARGETDIR/index.html  /var/lib/cloud9/index.html
-cp Lorank/$TARGETDIR/photo.jpg   /var/lib/cloud9/images/photo.jpg
+mkdir -p $LORANK_WEB_ROOT/images
+cp -n $LORANK_WEB_ROOT/index.html /root/savesys/bone101_index.html
+cp Lorank/$TARGETDIR/index.html  $LORANK_WEB_ROOT/index.html
+cp Lorank/$TARGETDIR/photo.jpg   $LORANK_WEB_ROOT/images/photo.jpg
 
 # Patch the bonescript file, if possible
 if [ -e /usr/local/lib/node_modules/bonescript/index.js ]
@@ -46,8 +47,8 @@ else
 fi
 
 # Localize files for off-line use
-wget -nv -nc -P/var/lib/cloud9/static https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css
-wget -nv -nc -P/var/lib/cloud9/static https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css.map
-wget -nv -nc -P/var/lib/cloud9/static https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js
-wget -nv -nc -P/var/lib/cloud9/static https://code.jquery.com/jquery-1.12.2.min.js
+wget -nv -nc -P$LORANK_WEB_ROOT/static https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css
+wget -nv -nc -P$LORANK_WEB_ROOT/static https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css.map
+wget -nv -nc -P$LORANK_WEB_ROOT/static https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js
+wget -nv -nc -P$LORANK_WEB_ROOT/static https://code.jquery.com/jquery-1.12.2.min.js
 
